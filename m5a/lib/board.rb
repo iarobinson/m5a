@@ -15,6 +15,16 @@ class Board
   end
 
   def make_move(start_pos, current_player_name)
+    stone_count = cups[start_pos].length
+    cups[start_pos] -= cups[start_pos]
+
+    idx = 1
+    while idx <= stone_count
+      cups[idx + start_pos].concat([:stone]) unless idx + start_pos == 13
+      idx += 1
+    end
+
+    # render
   end
 
   def next_turn(ending_cup_idx)
