@@ -3,7 +3,15 @@ class Board
 
   def initialize(name1, name2)
     @cups = Array.new(14) { [:stone, :stone, :stone, :stone] }
+    @name1 = name1
+    @name2 = name2
     place_stones
+    assign_sides
+  end
+
+  def assign_sides(name1, name2)
+    name1 = "1,2,3,4,5".split(',')
+    name2 = "7,8,9,10,11,12".split(',')
   end
 
   def place_stones
@@ -17,10 +25,11 @@ class Board
   def make_move(start_pos, current_player_name)
     stone_count = cups[start_pos].length
     cups[start_pos] -= cups[start_pos]
+    current_player
 
     idx = 1
     while idx <= stone_count
-      cups[idx + start_pos].concat([:stone]) unless idx + start_pos == 13
+      cups[idx + start_pos].concat([:stone])
       idx += 1
     end
 
